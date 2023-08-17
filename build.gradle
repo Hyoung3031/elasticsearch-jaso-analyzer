@@ -61,6 +61,7 @@ task buildPluginZip(type: Zip, dependsOn: [':jar']) {
     archiveBaseName.set('jaso-analyzer-plugin')
     archiveClassifier.set('plugin')
     from files(project.libsDir) // project.libsDir 대신 ext.libsDir를 사용
+    from 'build/libs' // JAR 파일이 생성되는 경로로 수정
     from 'src/main/resources'
 }
 
