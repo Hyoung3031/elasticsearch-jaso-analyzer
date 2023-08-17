@@ -27,7 +27,7 @@ publishing {
         mavenJava(MavenPublication) {
             from components.java
 
-            groupId = 'com.example' // 원하는 그룹 아이디로 변경
+            groupId = 'com.search' // 원하는 그룹 아이디로 변경
             artifactId = 'jaso-analyzer-plugin'
             version = project.version
 

@@ -9,11 +9,11 @@ package org.elasticsearch.analysis;
 public class JasoDecomposer {
 
     //초성(19자) ㄱ ㄲ ㄴ ㄷ ㄸ ㄹ ㅁ ㅂ ㅃ ㅅ ㅆ ㅇ ㅈ ㅉ ㅊ ㅋ ㅌ ㅍ ㅎ
-    static String[] chosungKor = {"ㄱ", "ㄱㄱ", "ㄴ", "ㄷ", "ㄷㄷ", "ㄹ", "ㅁ", "ㅂ", "ㅂㅂ", "ㅅ", "ㅅㅅ", "ㅇ", "ㅈ", "ㅈㅈ", "ㅊ", "ㅋ", "ㅌ", "ㅍ", "ㅎ"};
+    static String[] chosungKor = {"ㄱ", "ㄲ", "ㄴ", "ㄷ", "ㄸ", "ㄹ", "ㅁ", "ㅂ", "ㅃ", "ㅅ", "ㅆ", "ㅇ", "ㅈ", "ㅉ", "ㅊ", "ㅋ", "ㅌ", "ㅍ", "ㅎ"};
     //중성(21자) ㅏ ㅐ ㅑ ㅒ ㅓ ㅔ ㅕ ㅖ ㅗ ㅘ(9) ㅙ(10) ㅚ(11) ㅛ ㅜ ㅝ(14) ㅞ(15) ㅟ(16) ㅠ ㅡ ㅢ(19) ㅣ
     static String[] jungsungKor = {"ㅏ", "ㅐ", "ㅑ", "ㅒ", "ㅓ", "ㅔ", "ㅕ", "ㅖ", "ㅗ", "ㅗㅏ", "ㅗㅐ", "ㅗㅣ", "ㅛ", "ㅜ", "ㅜㅓ", "ㅜㅔ", "ㅜㅣ", "ㅠ", "ㅡ", "ㅡㅣ", "ㅣ"};
     //종성(28자) <없음> ㄱ ㄲ ㄳ(3) ㄴ ㄵ(5) ㄶ(6) ㄷ ㄹ ㄺ(9) ㄻ(10) ㄼ(11) ㄽ(12) ㄾ(13) ㄿ(14) ㅀ(15) ㅁ ㅂ ㅄ(18) ㅅ ㅆ ㅇ ㅈ ㅊ ㅋ ㅌ ㅍ ㅎ
-    static String[] jongsungKor = {" ", "ㄱ", "ㄱㄱ", "ㄱㅅ", "ㄴ", "ㄴㅈ", "ㄴㅎ", "ㄷ", "ㄹ", "ㄹㄱ", "ㄹㅁ", "ㄹㅂ", "ㄹㅅ", "ㄹㅌ", "ㄹㅍ", "ㄹㅎ", "ㅁ", "ㅂ", "ㅂㅅ", "ㅅ", "ㅅㅅ", "ㅇ", "ㅈ", "ㅊ", "ㅋ", "ㅌ", "ㅍ", "ㅎ"};
+    static String[] jongsungKor = {" ", "ㄱ", "ㄲ", "ㄳ", "ㄴ", "ㄵ", "ㄶ", "ㄷ", "ㄹ", "ㄺ", "ㄻ", "ㄼ", "ㄽ", "ㄾ", "ㄿ", "ㅀ", "ㅁ", "ㅂ", "ㅄ", "ㅅ", "ㅆ", "ㅇ", "ㅈ", "ㅊ", "ㅋ", "ㅌ", "ㅍ", "ㅎ"};
 
     static String[] chosungEng = {"r", "R", "s", "e", "E", "f", "a", "q", "Q", "t", "T", "d", "w", "W", "c", "z", "x", "v", "g"};
     static String[] jungsungEng = {"k", "o", "i", "O", "j", "p", "u", "P", "h", "hk", "ho", "hl", "y", "n", "nj", "np", "nl", "b", "m", "ml", "l"};
@@ -155,51 +155,51 @@ public class JasoDecomposer {
                         //복자음 강제분리
                         switch (ch) {
                             case 'ㄲ':
-                                etcBuffer.append("ㄱㄱ");
+                                etcBuffer.append("ㄲ");
                                 break;
                             case 'ㄳ':
-                                etcBuffer.append("ㄱㅅ");
+                                etcBuffer.append("ㄳ");
                                 break;
                             case 'ㄵ':
-                                etcBuffer.append("ㄴㅈ");
+                                etcBuffer.append("ㄵ");
                                 break;
                             case 'ㄶ':
-                                etcBuffer.append("ㄴㅎ");
+                                etcBuffer.append("ㄶ");
                                 break;
                             case 'ㄺ':
-                                etcBuffer.append("ㄹㄱ");
+                                etcBuffer.append("ㄺ");
                                 break;
                             case 'ㄻ':
-                                etcBuffer.append("ㄹㅁ");
+                                etcBuffer.append("ㄻ");
                                 break;
                             case 'ㄼ':
-                                etcBuffer.append("ㄹㅂ");
+                                etcBuffer.append("ㄼ");
                                 break;
                             case 'ㄽ':
-                                etcBuffer.append("ㄹㅅ");
+                                etcBuffer.append("ㄽ");
                                 break;
                             case 'ㄾ':
-                                etcBuffer.append("ㄹㅌ");
+                                etcBuffer.append("ㄾ");
                                 break;
                             case 'ㄿ':
-                                etcBuffer.append("ㄹㅍ");
+                                etcBuffer.append("ㄿ");
                                 break;
                             case 'ㅀ':
-                                etcBuffer.append("ㄹㅎ");
+                                etcBuffer.append("ㅀ");
                                 break;
                             case 'ㅄ':
-                                etcBuffer.append("ㅂㅅ");
+                                etcBuffer.append("ㅄ");
                             case 'ㄸ':
-                                etcBuffer.append("ㄷㄷ");
+                                etcBuffer.append("ㄸ");
                                 break;
                             case 'ㅃ':
-                                etcBuffer.append("ㅂㅂ");
+                                etcBuffer.append("ㅃ");
                                 break;
                             case 'ㅆ':
-                                etcBuffer.append("ㅅㅅ");
+                                etcBuffer.append("ㅆ");
                                 break;
                             case 'ㅉ':
-                                etcBuffer.append("ㅈㅈ");
+                                etcBuffer.append("ㅉ");
                                 break;
                             default:
                                 etcBuffer.append(ch);
