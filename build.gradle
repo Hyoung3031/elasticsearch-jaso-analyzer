@@ -1,46 +1,66 @@
-apply plugin: 'java'
+plugins {
+    id 'java'
+    id 'maven-publish' // maven-publish 플러그인 추가
+}
 
 sourceCompatibility = 1.8
 compileJava.options.encoding = 'UTF-8'
 
-version = '7.8.0'
-jar {
-    manifest {
-        attributes 'Implementation-Title': 'Elasticsearch Jaso Analyzer Plugin',
-                   'Implementation-Version': version
-    }
-}
+version = '7.10.2'
 
 repositories {
     mavenCentral()
 }
 
 dependencies {
-    compile group: 'commons-collections', name: 'commons-collections', version: '3.2'
-    compile group: 'org.elasticsearch', name: 'elasticsearch', version: version
-    compile group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.11.0'
-    compile group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.11.0'
-    testCompile group: 'junit', name: 'junit', version: '4.+'
-    compile group: 'org.slf4j', name: 'slf4j-api', version: '1.7.25'
-
+    // 의존성 설정은 이전과 동일하게 유지
+    implementation group: 'commons-collections', name: 'commons-collections', version: '3.2'
+    implementation group: 'org.elasticsearch', name: 'elasticsearch', version: version
+    implementation group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.11.0'
+    implementation group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.11.0'
+    testImplementation group: 'junit', name: 'junit', version: '4.+'
+    implementation group: 'org.slf4j', name: 'slf4j-api', version: '1.7.25'
 }
 
-test {
-    systemProperties 'property': 'value'
-}
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
 
-uploadArchives {
+            groupId = 'com.example' // 원하는 그룹 아이디로 변경
+            artifactId = 'jaso-analyzer-plugin'
+            version = project.version
+
+            // 아티팩트에 대한 추가 정보 설정
+            pom {
+                name = 'Elasticsearch Jaso Analyzer Plugin'
+                description 'Plugin for Elasticsearch Jaso Analyzer'
+                licenses {
+                    license {
+                        name.set('Apache License, Version 2.0') // name 속성에 값을 설정
+                        url.set('http://www.apache.org/licenses/LICENSE-2.0.txt') // url 속성에 값을 설정
+                    }
+                }
+                url = 'https://github.com/Hyoung3031/elasticsearch-jaso-analyzer' // 이 줄을 추가해주세요
+            }
+
+        }
+    }
     repositories {
-       flatDir {
-           dirs 'repos'
-       }
+        maven {
+            url uri('repos') // 아티팩트 업로드할 디렉토리 설정
+        }
     }
 }
 
-task buildPluginZip(type: Zip, dependsOn:[':jar']) {
-    baseName = 'jaso-analyzer-plugin'
-    classifier = 'plugin'
-    from files(libsDir)
+ext {
+    libsDir = file('libs') // libs 디렉토리를 가리키는 프로퍼티 추가
+}
+
+task buildPluginZip(type: Zip, dependsOn: [':jar']) {
+    archiveBaseName.set('jaso-analyzer-plugin')
+    archiveClassifier.set('plugin')
+    from files(project.libsDir) // project.libsDir 대신 ext.libsDir를 사용
     from 'src/main/resources'
 }
 
